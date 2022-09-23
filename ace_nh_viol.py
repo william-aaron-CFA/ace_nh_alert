@@ -123,6 +123,8 @@ if ((hour_now < 24) and (hour_now > 7)):
             os.system(f'date >> {lockfile}')#touch lockfile, updating the date
         else:
             lock_handle = open(lockfile,"w+")
+            lock_handle.write(f'Alert Trigger Script: {os.path.realpath(os.path.dirname(__file__)) + "/" + os.path.basename(__file__)} \n')
+            lock_handle.write(f'Alert in file: {infile}\n')
             lock_handle.write(f'No valid ACE data for at least {viol_hour}h\n')
             lock_handle.write("Radiation team should investigate\n")
             lock_handle.write("this message sent to sot_ace_alert\n")
