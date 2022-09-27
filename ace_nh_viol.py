@@ -22,15 +22,15 @@ for ent in data:
     exec( "%s = %s" %(var, line))
 
 #
-#--- append  pathes to private folders to a python directory
+#--- append  paths to private folders to a python directory
 #
 sys.path.append('/data/mta4/Script/Python3.8/MTA/')
 
 #
 #--Create file to store log of steps
 #
-pathTest = "/home/waaron/git/ace_nh_alert" #path for testing this script on desktop machine scrapper. remove psot testring
-#creating a tracking file for the testing progress of this script as it runs on the the desktop machine scrapper.
+pathTest = "/home/waaron/git/ace_nh_alert" #path for testing this script on desktop machine scrapper. remove post testing
+#creating a tracking file for the testing progress of this script as it runs on the the desktop machine scrapper. Note that tracker currently keeps tracking actions and doesn't stop after a violation occurs. Must change that
 trackdir = pathTest + "/tracker"
 if (not os.path.exists(trackdir)):
     os.system(f'mkdir {trackdir}')
@@ -76,7 +76,7 @@ if (not os.path.exists(lockdir)):
 lockfile = lockdir + "/ace_nh_viol.out"
 
 bad_e_data = 0 # number of lines with e status != 0
-bad_p_data = 0 #number of lines with p status != 0
+bad_p_data = 0 # number of lines with p status != 0
 
 
 #
@@ -108,7 +108,7 @@ for line in reversed(list(open(infile))):#iterating over the file lines in rever
 
 log_handle.write(f'Total bad data count: E: {bad_e_data}, P: {bad_p_data}\n')#remove post testing
 #
-#--Alert Check: Does not send alerts between midnight and 7 am
+#--Alert Check: Does not send alerts between midnight and 8 am
 #
 hour_now = int(datetime.now().strftime("%H"))#get current hour
 log_handle.write(f'Current Hour: {hour_now}\n')#remove post testing
